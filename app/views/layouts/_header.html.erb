@@ -1,0 +1,39 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Megan's Closet", root_path, id: "logo" %>
+        <nav id="nav">
+          <div id="top_nav">
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Help", help_path %></li>
+               </ul>
+  </div>
+
+                <div id="log_in">
+           <% if logged_in? %>
+   <ul class="nav navbar-nav navbar-right">
+
+             
+           
+                <li>    <%= link_to "Log out", logout_path, method: "delete" %>
+                  </li>
+                
+               </ul>
+             
+             
+</ul>
+
+  <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+          </div>
+          </ul>
+         
+
+        </nav>
+      </div>
+ </header>
+
+     

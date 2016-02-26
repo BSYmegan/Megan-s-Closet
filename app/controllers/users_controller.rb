@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+     @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -24,11 +25,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    secure_params = params.require(:user).permit(:name, :email, 
+                                  :password, :password_confirmation)
     @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        remember @user    
+        format.html { redirect_to @user, notice: 'Welcome to the Megans Closet!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -69,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end
